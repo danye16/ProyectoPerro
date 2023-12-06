@@ -38,6 +38,31 @@ namespace ProyectoPerro.Data.Services
 
             //Metodo para buscar un unico Perro
             public Perro GetPerroById(int perroid) => _context.Perros.FirstOrDefault(n => n.Id == perroid);
-        
+
+        //Método que nos permite modificar un perro que se encuentra en la BD
+        public Perro UpdatePerroById(int perroid, PerroVM perro)
+        {
+            var _perro = _context.Perros.FirstOrDefault(n => n.Id == perroid);
+            if (_perro != null)
+            {
+                _perro.Nombre = perro.Nombre;
+                _perro.Raza = perro.Raza;
+                _perro.Edad = perro.Edad;
+             
+                _context.SaveChanges();
+            }
+            return _perro;
+        }
+
+        //Metodo para eliminar un perro de la BD
+        public void DeletePerroById(int perroid)
+        {
+            var _perro = _context.Perros.FirstOrDefault(n => n.Id == perroid);
+            if (_perro != null)
+            {
+                _context.Perros.Remove(_perro);
+                _context.SaveChanges();
+            }
+        }
     }
 }
