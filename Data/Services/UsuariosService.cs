@@ -23,7 +23,7 @@ namespace ProyectoPerro.Data.Services
                 Nombre = usuario.Nombre,
                 Telefono = usuario.Telefono,
                 Correo = usuario.Correo
-
+               
                 //  IdCollar = perro.Idcollar
 
             };
@@ -36,12 +36,13 @@ namespace ProyectoPerro.Data.Services
 
                 .Select(n => new UsuarioWhitPerrosVM()
                 {
-                    Nombre = n.Nombre,
+                    NombreUsuario = n.Nombre,
 
                    UsuarioPerros = n.Perros.Select(n => new UsuarioPerroVM()
                    {
-                      PerroNombre = n.Nombre,
-                      UsuarioPerros=n.Usuario.Perros.Select(n=> n.Nombre).ToList()
+                      NickPerro = n.Nombre,
+                      EdadPerro =n.Edad
+                     // UsuarioPerros=n.Usuario.Perros.Select(n=> n.Nombre).ToList()
 
                }).ToList()
             }).FirstOrDefault();

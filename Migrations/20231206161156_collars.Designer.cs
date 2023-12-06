@@ -2,21 +2,38 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoPerro.Data;
 
 namespace ProyectoPerro.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206161156_collars")]
+    partial class collars
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ProyectoPerro.Data.Models.Collar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CollarModelo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Collars");
+                });
 
             modelBuilder.Entity("ProyectoPerro.Data.Models.Perro", b =>
                 {
@@ -25,8 +42,14 @@ namespace ProyectoPerro.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CollarId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Edad")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Idcollar")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
@@ -38,6 +61,8 @@ namespace ProyectoPerro.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CollarId");
 
                     b.HasIndex("UsuarioId");
 
@@ -70,13 +95,26 @@ namespace ProyectoPerro.Migrations
 
             modelBuilder.Entity("ProyectoPerro.Data.Models.Perro", b =>
                 {
+                    b.HasOne("ProyectoPerro.Data.Models.Collar", "Collar")
+                        .WithMany("Perros")
+                        .HasForeignKey("CollarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ProyectoPerro.Data.Models.Usuario", "Usuario")
                         .WithMany("Perros")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Collar");
+
                     b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("ProyectoPerro.Data.Models.Collar", b =>
+                {
+                    b.Navigation("Perros");
                 });
 
             modelBuilder.Entity("ProyectoPerro.Data.Models.Usuario", b =>

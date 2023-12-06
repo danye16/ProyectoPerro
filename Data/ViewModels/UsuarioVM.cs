@@ -14,13 +14,15 @@ namespace ProyectoPerro.Data.ViewModels
 
     public class UsuarioWhitPerrosVM
     {
-        public string Nombre { get; set; }
+        public string NombreUsuario { get; set; }
         public List<UsuarioPerroVM> UsuarioPerros { get; set; }
     }
 
     public class UsuarioPerroVM
     {
-        public string PerroNombre { get; set; }
+        public string NickPerro { get; set; }
+        public string EdadPerro { get; set; }
+
         public List<string> UsuarioPerros { get; set; }
     }
 }

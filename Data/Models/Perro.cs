@@ -1,4 +1,6 @@
-﻿namespace ProyectoPerro.Data.Models
+﻿using System.Collections.Generic;
+
+namespace ProyectoPerro.Data.Models
 {
     public class Perro
     {
@@ -7,13 +9,16 @@
         public string? Raza { get; set; }
         public string? Edad {  get; set; }
        
-        public int Idcollar { get; set; }
+        //public int Idcollar { get; set; }
 
         //Propiedades de navegacion
-        public int CollarId { get; set; }
-        public Collar Collar { get; set;}
+        //public int CollarId { get; set; }
+        //public Collar Collar { get; set;}
 
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set;}
+
+        public List<Collar> Collars { get; set; }
+
     }
 }

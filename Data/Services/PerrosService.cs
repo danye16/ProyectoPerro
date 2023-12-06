@@ -24,7 +24,7 @@ namespace ProyectoPerro.Data.Services
                 Nombre = perro.Nombre,
                 Raza = perro.Raza,
                 Edad = perro.Edad,
-
+                UsuarioId= perro.UsuarioId,
                 //  IdCollar = perro.Idcollar
 
             };
