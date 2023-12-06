@@ -4,5 +4,9 @@
     {
         public int Id { get; set; }
 
+        
+        //propiedades de Navegacion
+        public Perro Perro { get; set; }
+        
     }
 }

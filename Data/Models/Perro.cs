@@ -9,7 +9,11 @@
        
         public int Idcollar { get; set; }
 
+        //Propiedades de navegacion
+        public int CollarId { get; set; }
+        public Collar Collar { get; set;}
 
-        public int CollarId
+        public int UsuarioId { get; set; }
+        public Usuario Usuario { get; set;}
     }
 }

@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoPerro.Data;
 
 namespace ProyectoPerro.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206050854_Collar")]
+    partial class Collar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,7 @@ namespace ProyectoPerro.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Collars");
+                    b.ToTable("Collar");
                 });
 
             modelBuilder.Entity("ProyectoPerro.Data.Models.Perro", b =>
@@ -52,41 +54,12 @@ namespace ProyectoPerro.Migrations
                     b.Property<string>("Raza")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CollarId")
                         .IsUnique();
 
-                    b.HasIndex("UsuarioId");
-
                     b.ToTable("Perros");
-                });
-
-            modelBuilder.Entity("ProyectoPerro.Data.Models.Usuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Correo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Idperro")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefono")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("ProyectoPerro.Data.Models.Perro", b =>
@@ -97,25 +70,12 @@ namespace ProyectoPerro.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProyectoPerro.Data.Models.Usuario", "Usuario")
-                        .WithMany("Perros")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Collar");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("ProyectoPerro.Data.Models.Collar", b =>
                 {
                     b.Navigation("Perro");
-                });
-
-            modelBuilder.Entity("ProyectoPerro.Data.Models.Usuario", b =>
-                {
-                    b.Navigation("Perros");
                 });
 #pragma warning restore 612, 618
         }

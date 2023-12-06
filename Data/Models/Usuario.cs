@@ -1,4 +1,6 @@
-﻿namespace ProyectoPerro.Data.Models
+﻿using System.Collections.Generic;
+
+namespace ProyectoPerro.Data.Models
 {
     public class Usuario
     {
@@ -7,6 +9,8 @@
         public string? Telefono { get; set; }
         public string? Correo { get; set; }
         public int Idperro {  get; set; }
+
+        public List<Perro> Perros { get; set; }
 
     }
 }

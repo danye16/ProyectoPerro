@@ -39,6 +39,8 @@ namespace ProyectoPerro
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionString));
             //Configurar el servicio para que pueda ser usado
             services.AddTransient<PerrosService>();
+            services.AddTransient<UsuariosService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProyectoPerro", Version = "v1" });
@@ -65,7 +67,7 @@ namespace ProyectoPerro
             {
                 endpoints.MapControllers();
             });
-             AppDbInitializer.Seed(app);
+            // AppDbInitializer.Seed(app);
 
         }
     }

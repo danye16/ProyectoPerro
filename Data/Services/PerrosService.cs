@@ -16,7 +16,7 @@ namespace ProyectoPerro.Data.Services
         }
 
         //Aqui vamos a tener un unico metodo para
-        //agregar libros a nuestra BD.
+        //agregar Perros a nuestra BD.
         public void AddPerro(PerroVM perro)
         {
             var _perro = new Perro()
