@@ -20,5 +20,22 @@ namespace ProyectoPerro.Controllers
             _perrosService.AddPerro(perro);
             return Ok();
         }
+
+        //obetener todo los perros
+
+        [HttpGet("get-all-perros")]
+        public IActionResult GetAllPerros()
+        {
+            var allperros = _perrosService.GetAllPerros();
+            return Ok(allperros);
+        }
+        //obtener perro por ID
+        [HttpGet("get-perro-by-id/{id}*")]
+        public IActionResult GetPerroById(int id)
+        {
+            var perro = _perrosService.GetPerroById(id);
+            return Ok(perro);
+        }
+
     }
 }

@@ -31,5 +31,13 @@ namespace ProyectoPerro.Data.Services
             _context.Perros.Add(_perro);
             _context.SaveChanges();
         }
+
+
+            //Metodo para listar Perros
+            public List<Perro> GetAllPerros() => _context.Perros.ToList();
+
+            //Metodo para buscar un unico Perro
+            public Perro GetPerroById(int perroid) => _context.Perros.FirstOrDefault(n => n.Id == perroid);
+        
     }
 }
