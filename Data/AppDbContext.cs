@@ -11,6 +11,8 @@ namespace ProyectoPerro.Data
         }
         public DbSet<Perro> Perros { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Collar> Collars { get; set; }
+
 
 
     }

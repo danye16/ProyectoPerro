@@ -40,6 +40,8 @@ namespace ProyectoPerro
             //Configurar el servicio para que pueda ser usado
             services.AddTransient<PerrosService>();
             services.AddTransient<UsuariosService>();
+            services.AddTransient<CollarsService>();
+
 
             services.AddSwaggerGen(c =>
             {

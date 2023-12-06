@@ -18,6 +18,7 @@ namespace ProyectoPerro.Data.Models
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set;}
 
+
         public List<Collar> Collars { get; set; }
 
     }
