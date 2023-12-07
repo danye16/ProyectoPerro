@@ -41,6 +41,8 @@ namespace ProyectoPerro
             services.AddTransient<PerrosService>();
             services.AddTransient<UsuariosService>();
             services.AddTransient<CollarsService>();
+            services.AddTransient<GpsService>();
+
 
 
             services.AddSwaggerGen(c =>

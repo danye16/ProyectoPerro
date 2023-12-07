@@ -15,11 +15,18 @@ namespace ProyectoPerro.Controllers
         {
             _collarsService = collarsService;
         }
-        [HttpPost("add-collar")]
-        public IActionResult AddCollar([FromBody] CollarVM collar)
+        [HttpPost("add-update-collar")]
+        public IActionResult AddorUpdateCollar([FromBody] CollarVM collar)
         {
-            _collarsService.AddCollar(collar);
+            _collarsService.AddorUpdateCollar(collar);
             return Ok();
+        }
+
+        [HttpGet("get-all-collares")]
+        public IActionResult GetAllCollars()
+        {
+            var allcollars = _collarsService.GetAllCollars();
+            return Ok(allcollars);
         }
     }
 }

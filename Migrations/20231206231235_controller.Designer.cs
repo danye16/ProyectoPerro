@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoPerro.Data;
 
 namespace ProyectoPerro.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206231235_controller")]
+    partial class controller
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,35 +41,6 @@ namespace ProyectoPerro.Migrations
                     b.HasIndex("PerroId");
 
                     b.ToTable("Collars");
-                });
-
-            modelBuilder.Entity("ProyectoPerro.Data.Models.Gps", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CollarId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Estado")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PosicionCasa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PosicionPerro")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Rango")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CollarId");
-
-                    b.ToTable("Gpss");
                 });
 
             modelBuilder.Entity("ProyectoPerro.Data.Models.Perro", b =>
@@ -131,17 +104,6 @@ namespace ProyectoPerro.Migrations
                     b.Navigation("Perro");
                 });
 
-            modelBuilder.Entity("ProyectoPerro.Data.Models.Gps", b =>
-                {
-                    b.HasOne("ProyectoPerro.Data.Models.Collar", "Collar")
-                        .WithMany("Gps")
-                        .HasForeignKey("CollarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Collar");
-                });
-
             modelBuilder.Entity("ProyectoPerro.Data.Models.Perro", b =>
                 {
                     b.HasOne("ProyectoPerro.Data.Models.Usuario", "Usuario")
@@ -151,11 +113,6 @@ namespace ProyectoPerro.Migrations
                         .IsRequired();
 
                     b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("ProyectoPerro.Data.Models.Collar", b =>
-                {
-                    b.Navigation("Gps");
                 });
 
             modelBuilder.Entity("ProyectoPerro.Data.Models.Perro", b =>

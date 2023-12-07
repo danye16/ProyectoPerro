@@ -13,6 +13,8 @@ namespace ProyectoPerro.Data.Models
         public int PerroId { get; set; }
         public Perro Perro { get; set; }
 
+
+        public List<Gps> Gps { get; set; }
         //   public List<Perro> Perros { get; set; }
     }
 }

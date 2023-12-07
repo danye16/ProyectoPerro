@@ -29,5 +29,27 @@ namespace ProyectoPerro.Controllers
             var _response = _usuariosService.GetUsuarioData(id);
             return Ok(_response);
         }
+
+
+        [HttpPut("update-usuario-by-id/{id}")]
+        public IActionResult UpdateUsuarioById(int id, [FromBody] UsuarioVM usuario)
+        {
+            var updateUsuario = _usuariosService.UpdateUsuarioById(id, usuario);
+            return Ok(updateUsuario);
+        }
+        [HttpDelete("delete-usuario-by-id/{id}")]
+        public IActionResult DeleteUsuarioById(int id)
+        {
+            _usuariosService.DeleteUsuarioById(id);
+            return Ok();
+        }
+
+        [HttpGet("get-all-users")]
+        public IActionResult GetAllUsers()
+        {
+            var allbooks = _usuariosService.GetAllUsers();
+            return Ok(allbooks);
+        }
+
     }
 }

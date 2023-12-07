@@ -16,20 +16,36 @@ namespace ProyectoPerro.Data.Services
 
         //Aqui vamos a tener un unico metodo para
         //agregar Perros a nuestra BD.
-        public void AddCollar(CollarVM collar)
+        public void AddorUpdateCollar(CollarVM collar)
         {
-            var _collar = new Collar()
-            {
-                CollarModelo= collar.CollarModelo,
-                Color=collar.Color,
-                PerroId = collar.PerroId,
-               
-                //  IdCollar = perro.Idcollar
+           
+            // Verificar si ya existe un collar con el mismo PerroId
+            var existingCollar = _context.Collars.FirstOrDefault(c => c.PerroId == collar.PerroId);
 
-            };
-            _context.Collars.Add(_collar);
-            _context.SaveChanges();
+            if (existingCollar != null)
+            {
+                // Actualizar propiedades del collar existente
+                existingCollar.CollarModelo = collar.CollarModelo;
+                existingCollar.Color = collar.Color;
+                _context.SaveChanges();
+            }
+            else
+            {
+                // Si no existe, crear un nuevo collar
+                var newCollar = new Collar()
+                {
+                    CollarModelo = collar.CollarModelo,
+                    Color = collar.Color,
+                    PerroId = collar.PerroId,
+                };
+
+                _context.Collars.Add(newCollar);
+                _context.SaveChanges();
+            }
         }
+
+        public List<Collar> GetAllCollars() => _context.Collars.ToList();
+
 
     }
 }
